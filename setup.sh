@@ -45,13 +45,22 @@ if [ ! -f .env ]; then
 fi
 
 # Generate BAML client
+echo "Generating BAML client code..."
 if command -v baml-cli &> /dev/null; then
-    echo "Generating BAML client code..."
-    baml-cli generate --from ./baml --output ./baml_client
+    baml-cli generate --from ./baml_src
+elif [ -f venv/bin/baml-cli ]; then
+    venv/bin/baml-cli generate --from ./baml_src
+else
+    echo "✗ baml-cli not found"
+    echo "   It should have been installed with baml-py in requirements.txt"
+    exit 1
+fi
+
+if [ $? -eq 0 ]; then
     echo "✓ BAML client generated successfully"
 else
-    echo "⚠️  Skipping BAML client generation (baml-cli not found)"
-    echo "   Install baml-cli and run: baml-cli generate --from ./baml --output ./baml_client"
+    echo "✗ BAML client generation failed"
+    exit 1
 fi
 
 echo ""
@@ -63,7 +72,7 @@ echo "Next steps:"
 echo "1. Edit .env and add your API keys"
 echo "2. (If baml-cli wasn't found) Install it and run:"
 echo "   npm install -g @boundaryml/baml"
-echo "   baml-cli generate --from ./baml --output ./baml_client"
+echo "   baml-cli generate --from ./baml_src"
 echo "3. Run the example:"
 echo "   source venv/bin/activate"
 echo "   python src/orchestrator.py example_input.txt"

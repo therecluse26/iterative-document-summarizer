@@ -45,6 +45,15 @@ client<llm> GPT4o {
   }
 }
 
+client<llm> GroqGptOss_20b {
+  provider openai-generic
+  options {
+    base_url "https://api.groq.com/openai/v1"
+    api_key env.GROQ_API_KEY
+    model "openai/gpt-oss-20b"
+  }
+}
+
 // Retry strategy for all functions
 retry_policy StandardRetry {
   max_retries 3

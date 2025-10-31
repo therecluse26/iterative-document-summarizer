@@ -3,12 +3,7 @@ AI Sliding Context Summarizer - Complete File Structure
 
 ai-sliding-context-summarizer/
 │
-├── baml/                          # BAML definitions (legacy location)
-│   ├── schemas.baml              # Type definitions for structured outputs
-│   ├── clients.baml              # LLM client configurations
-│   └── functions.baml            # BAML function definitions
-│
-├── baml_src/                      # BAML source files (primary location)
+├── baml_src/                      # BAML source files (EDIT THESE)
 │   ├── baml.config               # BAML project configuration
 │   ├── schemas.baml              # Type definitions (SummarySchema, AnalysisReport)
 │   ├── clients.baml              # LLM clients (Haiku, Sonnet, GPT variants)
@@ -79,7 +74,7 @@ Workflow Overview
 1. Setup:
    ./setup.sh                                    # Automated setup
    # OR
-   baml-cli generate --from ./baml_src --output ./baml_client
+   baml-cli generate --from ./baml_src
 
 2. Run:
    python src/orchestrator.py example_input.txt output.md
@@ -94,7 +89,7 @@ Extension Points
 
 To modify prompts:
   → Edit baml_src/functions.baml
-  → Run: baml-cli generate --from ./baml_src --output ./baml_client
+  → Run: cd baml_src && baml-cli generate
 
 To change models:
   → Edit client references in baml_src/functions.baml

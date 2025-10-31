@@ -66,7 +66,7 @@ ai-sliding-context-summarizer/
 
 4. **Generate BAML client code**:
    ```bash
-   baml-cli generate --from ./baml --output ./baml_client
+   baml-cli generate --from ./baml_src
    ```
 
    This generates Python client code in `baml_client/` that the orchestrator imports.
@@ -115,13 +115,13 @@ Edit `config.json` to customize behavior:
 
 To use GPT models instead of Claude:
 
-1. Edit `baml/functions.baml`:
+1. Edit `baml_src/functions.baml`:
    - Change `client Haiku` to `client GPT4oMini` in `SummarizeChunk`
    - Change `client Sonnet` to `client GPT4o` in `AnalyzeSummary`
 
 2. Regenerate BAML client:
    ```bash
-   baml-cli generate --from ./baml --output ./baml_client
+   baml-cli generate --from ./baml_src
    ```
 
 3. Ensure `OPENAI_API_KEY` is set in `.env`
@@ -263,7 +263,7 @@ pipeline.process_document(
 
 **Error**: `ModuleNotFoundError: No module named 'baml_client'`
 
-**Solution**: Run `baml-cli generate --from ./baml --output ./baml_client`
+**Solution**: Run `baml-cli generate --from ./baml_src`
 
 ### API rate limits
 

@@ -14,7 +14,6 @@ ENV/
 
 # BAML generated files
 baml_client/
-baml_src/
 
 # Output directories
 summaries/
