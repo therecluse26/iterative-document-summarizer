@@ -1,0 +1,21 @@
+{
+  "chunk_size": 2000,
+  "overlap": 200,
+  "merge_batch_size": 4,
+  "models": {
+    "summarizer": "claude-3-haiku-20240307",
+    "analyzer": "claude-3-5-sonnet-20241022"
+  },
+  "output": {
+    "save_intermediate": true,
+    "summaries_dir": "summaries",
+    "logs_dir": "logs"
+  },
+  "description": "Configuration for AI Sliding Context Summarizer",
+  "notes": [
+    "chunk_size: Number of tokens per chunk (adjust based on model context limits)",
+    "overlap: Number of overlapping tokens between chunks (prevents information loss)",
+    "merge_batch_size: How many summaries to merge at once in hierarchical merge",
+    "Models can be switched to GPT variants by updating client references in BAML"
+  ]
+}
